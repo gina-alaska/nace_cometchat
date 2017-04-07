@@ -39,4 +39,5 @@ cometchat 'cometchat' do
   dbconfig mysqlconfig
   owner node['cometchat']['system_user']
   group node['cometchat']['system_group']
+  action :install
 end
