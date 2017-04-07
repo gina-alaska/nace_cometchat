@@ -1,0 +1,32 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  # You may wish to disable always updating cookbooks in CI or other testing environments.
+  # For example:
+  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    data_bags_path: "../../data_bags" 
+    run_list:
+      - recipe[nace_cometchat::database]
+      - recipe[nace_cometchat::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
+      cometchat:
+        db_host: 127.0.0.1
+        db_name: cometchat
+        db_username: cometchat
+        db_password: changemenow!
