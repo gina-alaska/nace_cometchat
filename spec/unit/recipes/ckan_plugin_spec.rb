@@ -1,6 +1,6 @@
 #
 # Cookbook:: nace_cometchat
-# Recipe:: default
+# Spec:: default
 #
 # The MIT License (MIT)
 #
@@ -24,22 +24,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe 'chef-vault'
 
-tag('cometchat')
+require 'spec_helper'
 
-apt_update 'system' do
-  action :periodic
-  frequency 86_400
-end
+describe 'nace_cometchat::ckan_plugin' do
+  context 'When all attributes are default, on an unspecified platform' do
+    let(:chef_run) do
+      runner = ChefSpec::ServerRunner.new
+      runner.converge(described_recipe)
+    end
 
-appconfig = chef_vault_item_for_environment('apps', 'nace_ckan')
-mysqlconfig = appconfig['cometchat']
-
-cometchat 'cometchat' do
-  host 'localhost'
-  dbconfig mysqlconfig
-  owner node['cometchat']['system_user']
-  group node['cometchat']['system_group']
-  action :install
+    it 'converges successfully' do
+      expect { chef_run }.to_not raise_error
+    end
+  end
 end
