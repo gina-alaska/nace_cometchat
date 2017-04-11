@@ -31,7 +31,7 @@ chatnode = search(:node, "tags:cometchat AND chef_environment:#{node.chef_enviro
 if chatnode
   mysqlconfig = chef_vault_item_for_environment('apps', 'nace_ckan')['cometchat']
 
-  chat_url = "http://#{chatnode['fqdn'].nil? chatnode['ip'] : chatnode['fqdn']}/"
+  chat_url = "http://#{chatnode['fqdn'].nil ? chatnode['ip'] : chatnode['fqdn']}/"
 
   package %w(mysql-client libmysqlclient-dev)
 
