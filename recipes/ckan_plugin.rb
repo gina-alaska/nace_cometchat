@@ -26,7 +26,7 @@
 
 include_recipe 'chef-vault'
 
-chatnode = search(:node, "tag:cometchat AND chef_environment:#{node.chef_environment}", filter_result: { ip: [:ip_address] }).first
+chatnode = search(:node, "tags:cometchat AND chef_environment:#{node.chef_environment}", filter_result: { ip: [:ip_address] }).first
 
 if chatnode
   mysqlconfig = chef_vault_item_for_environment('apps', 'nace_ckan')['cometchat']
