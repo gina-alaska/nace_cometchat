@@ -26,12 +26,12 @@
 
 include_recipe 'chef-vault'
 
-chatnode = search(:node, "tags:cometchat AND chef_environment:#{node.chef_environment}", filter_result: { ip: [:ipaddress], fqdn: [:fqdn] }).first
+chatnode = search(:node, "tags:cometchat AND chef_environment:#{node.chef_environment}", filter_result: { ip: [:ec2, :public_ipv4], fqdn: [:ec2, :public_hostname] }).first
 
 if chatnode
   mysqlconfig = chef_vault_item_for_environment('apps', 'nace_ckan')['cometchat']
 
-  chat_url = "http://#{chatnode['fqdn'].nil? ? chatnode['ip'] : chatnode['fqdn']}/"
+  chat_url = "http://#{chatnode['fqdn'].empty? ? chatnode['ip'] : chatnode['fqdn']}"
 
   package %w(mysql-client libmysqlclient-dev)
 
