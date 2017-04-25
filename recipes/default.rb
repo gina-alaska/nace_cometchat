@@ -37,7 +37,7 @@ appconfig = chef_vault_item_for_environment('apps', 'nace_ckan')
 mysqlconfig = appconfig['cometchat']
 
 cometchat 'cometchat' do
-  host 'localhost'
+  host node['ec2']['public_ipv4']
   dbconfig mysqlconfig
   owner node['cometchat']['system_user']
   group node['cometchat']['system_group']

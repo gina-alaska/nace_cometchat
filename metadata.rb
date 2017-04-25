@@ -4,7 +4,7 @@ maintainer_email 'support+chef@gina.alaska.edu'
 license 'mit'
 description 'Installs/Configures nace_cometchat'
 long_description 'Installs/Configures nace_cometchat'
-version '0.2.4'
+version '0.2.5'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
