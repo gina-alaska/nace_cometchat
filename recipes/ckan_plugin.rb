@@ -44,20 +44,12 @@ if chatnode
     action :create
   end
 
-  template '/usr/lib/ckan/default/src/ckanext-nasa_ace/ckanext/nasa_ace/templates/snippets/cometchat-css.html' do
-    source 'cometchat-css.html.erb'
-    variables ({
-        'cometchat_url' => chat_url
-    })
-    action :create
-  end
-
-  template '/usr/lib/ckan/default/src/ckanext-nasa_ace/ckanext/nasa_ace/templates/snippets/cometchat-js.html' do
-    source 'cometchat-js.html.erb'
+  template '/usr/lib/ckan/default/src/ckanext-nasa_ace/ckanext/nasa_ace/templates/snippets/cometchat-embedded.html' do
+    source 'cometchat-embedded.html.erb'
     variables ({
         'cometchat_url' => chat_url
       })
-    action :create
+      action :create
   end
 
   template '/usr/lib/ckan/default/src/ckanext-nasa_ace/ckanext/nasa_ace_actions/config.py' do
